@@ -7,12 +7,25 @@
 	import '../app.postcss';
 
 	import { AppShell, AppBar, LightSwitch } from '@skeletonlabs/skeleton';
+
+	function scrollIntoView({ target }) {
+		  const el = document.querySelector(target.getAttribute('href'));
+		  if (!el) return;
+	  el.scrollIntoView({
+		behavior: 'smooth'
+	  });
+	}
+
+	const downloadResume = () => {
+		return;
+	}
 </script>
 
 <!-- <slot /> -->
 
 <AppShell>
 	<svelte:fragment slot="header">
+	
 		
 	<AppBar>
 		<svelte:fragment slot="lead">
@@ -21,22 +34,23 @@
 		Subesh's portfolio
 		<svelte:fragment slot="trail">
 			
-	<button type="button" class="btn variant-ghost-primary">
-		<span>(icon)</span>
-		<span>About</span>
-	</button>
-	<button type="button" class="btn variant-ghost-primary">
-		<span>(icon)</span>
-		<span>Past Projects</span>
-	</button>
-	<button type="button" class="btn variant-ghost-primary">
-		<span>(icon)</span>
-		<span>Skills</span>
-	</button>
-	<button type="button" class="btn variant-ghost-primary">
-		<span>(icon)</span>
-		<span>Contact</span>
-	</button>
+		<a href="#about" class="btn variant-ghost-primary" on:click|preventDefault={scrollIntoView}>
+			<span>About</span>
+		</a>
+
+		<a href="#past-projects" class="btn variant-ghost-primary" on:click|preventDefault={scrollIntoView}>
+			<span>Past Projects</span>
+		</a>
+		<a href="#skills" class="btn variant-ghost-primary" on:click|preventDefault={scrollIntoView}>
+			<span>Skills</span>
+		</a>
+		<a href="#contact" class="btn variant-ghost-primary" on:click|preventDefault={scrollIntoView}>
+			<span>Contact</span>
+		</a>
+
+		<a href="#download-resume" class="btn variant-ghost-primary" on:click|preventDefault={downloadResume}>
+			<span>Download Resume</span>
+		</a>
 
 	<LightSwitch />
 		</svelte:fragment>
@@ -45,6 +59,8 @@
 	</svelte:fragment>
 	<!-- Router Slot -->
 	<slot />
+
 	<!-- ---- / ---- -->
-	<svelte:fragment slot="pageFooter">Page Footer</svelte:fragment>
+
+	<!-- <svelte:fragment slot="pageFooter">Page Footer</svelte:fragment> -->
 </AppShell>
